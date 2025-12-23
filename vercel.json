@@ -1,19 +1,12 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "api/**/*.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/templates",
-      "dest": "/api/templates.ts"
+      "source": "/api/templates",
+      "destination": "/api/templates"
     },
     {
-      "src": "/api/preview/(.*)",
-      "dest": "/api/preview/[templateId].ts"
+      "source": "/api/preview/:templateId",
+      "destination": "/api/preview/[templateId]"
     }
   ]
 }
