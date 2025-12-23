@@ -1,7 +1,7 @@
 import { render } from '@react-email/render';
 import React from 'react';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-const templatesData = require('../../templates.json');
+import { templatesData } from '../data/templates';
 
 export default async function handler(
   req: VercelRequest,
