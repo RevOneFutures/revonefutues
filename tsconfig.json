@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["emails/**/*"],
+  "include": ["emails/**/*", "api/**/*", "config/**/*", "*.ts"],
   "exclude": ["node_modules"]
 }
 

@@ -1,7 +1,7 @@
 import { render } from '@react-email/render';
 import React from 'react';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import templatesData from '../../../templates.json';
+import * as templatesData from '../../templates.json';
 
 export default async function handler(
   req: VercelRequest,
@@ -13,7 +13,7 @@ export default async function handler(
     return res.status(400).send('Invalid template ID');
   }
 
-  const template = templatesData.templates.find(t => t.id === templateId);
+  const template = templatesData.templates.find((t: any) => t.id === templateId);
 
   if (!template) {
     return res.status(404).send('Template not found');
@@ -25,13 +25,13 @@ export default async function handler(
     const TemplateComponent = TemplateModule.default;
 
     // Get variables from query params or use preview defaults
-    const variables: any = {};
-    template.variables.forEach(v => {
+    const variables: Record<string, any> = {};
+    template.variables.forEach((v: any) => {
       const queryValue = req.query[v.name];
       if (queryValue && typeof queryValue === 'string') {
         variables[v.name] = queryValue;
       } else {
-        variables[v.name] = template.preview[v.name] || v.default;
+        variables[v.name] = (template.preview as any)[v.name] || v.default;
       }
     });
 
