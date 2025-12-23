@@ -2,6 +2,7 @@ import { render } from '@react-email/render';
 import React from 'react';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { templatesData } from '../data/templates';
+import { templateRegistry } from '../data/template-registry';
 
 export default async function handler(
   req: VercelRequest,
@@ -20,9 +21,12 @@ export default async function handler(
   }
 
   try {
-    // Dynamically import the template
-    const TemplateModule = await import(`../../../emails/${template.file}`);
-    const TemplateComponent = TemplateModule.default;
+    // Get the template component from the registry
+    const TemplateComponent = templateRegistry[templateId];
+    
+    if (!TemplateComponent) {
+      return res.status(404).send('Template component not found in registry');
+    }
 
     // Get variables from query params or use preview defaults
     const variables: Record<string, any> = {};
