@@ -12,7 +12,6 @@ import {
   Link,
 } from '@react-email/components';
 import * as React from 'react';
-import { getImageUrl } from '../config/constants';
 
 interface RevOneAccountCreatedProps {
   name?: string;
@@ -31,7 +30,7 @@ export default function RevOneAccountCreated({
           {/* Header Section - Logo */}
           <Section style={headerSection}>
             <Img
-              src={getImageUrl('/static/images/Logo Alternative.png')}
+              src="https://revonefutues.vercel.app/static/images/Logo%20Alternative.png"
               width="400"
               alt="RevOne Futures Logo"
               style={logo}
@@ -97,7 +96,7 @@ export default function RevOneAccountCreated({
             <Row>
               <Column style={footerColumnLeft}>
                 <Img
-                  src={getImageUrl('/static/images/Logo Alternative.png')}
+                  src="https://revonefutues.vercel.app/static/images/Logo%20Alternative.png"
                   width="140"
                   alt="RevOne Futures Logo"
                   style={footerLogo}
