@@ -120,7 +120,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const variables: Record<string, any> = {};
     template.variables.forEach((v: any) => {
       const queryValue = req.query[v.name];
-      variables[v.name] = (queryValue && typeof queryValue === 'string') ? queryValue : template.preview[v.name] || v.default;
+      variables[v.name] = (queryValue && typeof queryValue === 'string') ? queryValue : (template.preview as any)[v.name] || v.default;
     });
 
     const html = await render(React.createElement(RevOneAccountCreated, variables));
